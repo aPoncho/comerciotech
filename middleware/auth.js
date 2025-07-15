@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import Usuario from '../models/Usuario.js'; // Importa el modelo Usuario con .js
-const JWT_SECRET = process.env.JWT_SECRET;
+//const JWT_SECRET = process.env.JWT_SECRET;
 
 const authMiddleware = async (req, res, next) => {
     const authHeader = req.header('Authorization');
@@ -12,7 +12,7 @@ const authMiddleware = async (req, res, next) => {
         return res.status(401).json({ message: 'Acceso denegado. Formato de token inválido.' });
     }
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         const usuario = await Usuario.findById(decoded.id).select('-password');
 
