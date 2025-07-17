@@ -71,16 +71,12 @@ clienteRoute.put('/:id', async (req, res)=>{
 clienteRoute.post('/', async (req, res)=>{
     try{
         console.log(req.body)
-        const password = req.body.password;
-        const saltRounds = Number(process.env.SALTROUNDS);
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
         const newCliente = new Cliente({
             nombre : req.body.nombre,
             apellido: req.body.apellido,
             telefono: req.body. telefono,
             correo: req.body.correo,
             direccion: req.body.direccion,
-            password: hashedPassword
         });
         console.log(newCliente);
         await newCliente.save();

@@ -20,9 +20,9 @@ productoRoute.get('/', async (req, res)=>{
 
 
 // GET: Producto por Nombre
-productoRoute.get('/:nombre', async (req, res)=>{
+productoRoute.get('/:id', async (req, res)=>{
     try{
-        const producto = await Producto.findOne({nombre: req.params.nombre});
+        const producto = await Producto.findById(req.params.id);
         if (!producto) {
             return res.status(404).json({ message: 'Producto no encontrado.' });
         }

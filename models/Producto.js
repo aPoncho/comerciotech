@@ -4,6 +4,7 @@ const productosSchema = new mongoose.Schema({
     nombre:{
         type: String,
         required: true,
+        unique : true
     },
     descripcion:{
         type: String,
